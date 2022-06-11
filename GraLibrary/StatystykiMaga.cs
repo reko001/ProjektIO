@@ -5,10 +5,11 @@
         public int atakMagiczny;
         public int mądrość;
 
-        public StatystykiMaga(int pz, int af, int o, int s, int am, int m) : base(pz, af, o, s)
+        public StatystykiMaga(int punktyZdrowia, int atakFizyczny, int obrona, int szczęście, int atakMagiczny, int mądrość)
+        : base(punktyZdrowia, atakFizyczny, obrona, szczęście)
         {
-            atakMagiczny = am;
-            mądrość = m;
+            this.atakMagiczny = atakMagiczny;
+            this.mądrość = mądrość;
         }
 
         public new void WyświetlStatystyki()

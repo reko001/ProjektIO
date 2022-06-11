@@ -7,12 +7,12 @@
         public int obrona;
         public int szczęście;
 
-        public Statystyki(int pz, int af, int o, int s)
+        public Statystyki(int punktyZdrowia, int atakFizyczny, int obrona, int szczęście)
         {
-            punktyZdrowia = pz;
-            atakFizyczny = af;
-            obrona = o;
-            szczęście = s;
+            this.punktyZdrowia = punktyZdrowia;
+            this.atakFizyczny = atakFizyczny;
+            this.obrona = obrona;
+            this.szczęście = szczęście;
         }
 
         public void WyświetlStatystyki()

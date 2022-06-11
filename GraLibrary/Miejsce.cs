@@ -26,7 +26,7 @@ namespace GraLibrary
             if(liczbaZdarzeń > 0)
             {
                 Random random = new Random();
-                zdarzenia[random.Next(0, liczbaZdarzeń - 1)].Wykonaj(postać);
+                zdarzenia[random.Next(0, liczbaZdarzeń)].Wykonaj(postać);
             }
         }
     }
