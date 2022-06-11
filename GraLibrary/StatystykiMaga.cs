@@ -10,5 +10,12 @@
             atakMagiczny = am;
             mądrość = m;
         }
+
+        public new void WyświetlStatystyki()
+        {
+            base.WyświetlStatystyki();
+            System.Console.WriteLine($"Atak Magiczny: { atakMagiczny }");
+            System.Console.WriteLine($"Mądrość: { mądrość }");
+        }
     }
 }

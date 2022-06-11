@@ -10,5 +10,12 @@
 			wytrzymałość = w;
 			szansaNaCiosKrytyczny = ck;
 		}
+
+		public new void WyświetlStatystyki()
+        {
+            base.WyświetlStatystyki();
+            System.Console.WriteLine($"Wytrzymałość: { wytrzymałość }");
+            System.Console.WriteLine($"Szansa na cios krytyczny: { szansaNaCiosKrytyczny }");
+        }
 	}
 }

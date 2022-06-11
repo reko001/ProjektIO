@@ -10,5 +10,12 @@
             celność = c;
             zwinność = z;
         }
+
+        public new void WyświetlStatystyki()
+        {
+            base.WyświetlStatystyki();
+            System.Console.WriteLine($"Celność: { celność }");
+            System.Console.WriteLine($"Zwinność: { zwinność }");
+        }
     }
 }
