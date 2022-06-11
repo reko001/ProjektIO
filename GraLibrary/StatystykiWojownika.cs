@@ -5,10 +5,11 @@
 		public int wytrzymałość;
 		public int szansaNaCiosKrytyczny;
 
-		public StatystykiWojownika(int pz, int af, int o, int s, int w, int ck) : base(pz, af, o, s)
+		public StatystykiWojownika(int punktyZdrowia, int atakFizyczny, int obrona, int szczęście, int wytrzymałość, int szansaNaCiosKrytyczny) 
+		: base(punktyZdrowia, atakFizyczny, obrona, szczęście)
 		{
-			wytrzymałość = w;
-			szansaNaCiosKrytyczny = ck;
+			this.wytrzymałość = wytrzymałość;
+			this.szansaNaCiosKrytyczny = szansaNaCiosKrytyczny;
 		}
 
 		public new void WyświetlStatystyki()

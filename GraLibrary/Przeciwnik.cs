@@ -5,10 +5,10 @@ namespace GraLibrary
         public Statystyki statystyki;
         public int poziom;
 
-        public Przeciwnik(int pz, int af, int o, int p)
+        public Przeciwnik(int punktyZdrowia, int atakFizyczny, int obrona, int poziom)
         {
-            statystyki = new Statystyki(pz, af, o, 0);
-            poziom = p;
+            statystyki = new Statystyki(punktyZdrowia, atakFizyczny, obrona, 0);
+            this.poziom = poziom;
         }
     }
 }

@@ -5,10 +5,11 @@
         public int celność;
         public int zwinność;
 
-        public StatystykiStrzelca(int pz, int af, int o, int s, int c, int z) : base(pz, af, o, s)
+        public StatystykiStrzelca(int punktyZdrowia, int atakFizyczny, int obrona, int szczęście, int celność, int zwinność)
+        : base(punktyZdrowia, atakFizyczny, obrona, szczęście)
         {
-            celność = c;
-            zwinność = z;
+            this.celność = celność;
+            this.zwinność = zwinność;
         }
 
         public new void WyświetlStatystyki()
