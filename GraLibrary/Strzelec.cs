@@ -53,5 +53,30 @@ namespace GraLibrary
             System.Console.WriteLine($"Zwinność: { ((StatystykiStrzelca)statystyki).zwinność }");
             
         }
+        
+        public override void Walka(Przeciwnik przeciwnik)
+        {
+            while (zdrowie > 0 && przeciwnik.statystyki.punktyZdrowia > 0)
+            {
+                Random random = new Random();
+                int dodatkowePunkty = random.Next(0, statystyki.szczęście);
+                int dodatkowePunktyPrzeciwnik = random.Next(0, przeciwnik.statystyki.szczęście);
+                
+                int zadaneObrażenia = (int)(statystyki.atakFizyczny*2) * (1 + (((StatystykiStrzelca)statystyki).celność + ((StatystykiStrzelca)statystyki).zwinność + dodatkowePunkty) / 100);
+                zadaneObrażenia -= przeciwnik.statystyki.obrona * (1 +  dodatkowePunktyPrzeciwnik/100);
+                zadaneObrażenia = Math.Max(zadaneObrażenia, 0);
+
+                przeciwnik.statystyki.punktyZdrowia -= zadaneObrażenia;
+                Console.WriteLine($"Zadałeś { zadaneObrażenia } obrażeń. Pozostałe zdrowie przeciwnika: { przeciwnik.statystyki.punktyZdrowia }");
+                if (przeciwnik.statystyki.punktyZdrowia <= 0) break;
+
+                int otrzymaneObrażenia = (int)(przeciwnik.statystyki.atakFizyczny * 2.5) *
+                                         (1 + (dodatkowePunktyPrzeciwnik / 100));
+                otrzymaneObrażenia -= statystyki.obrona * (1 + (((StatystykiStrzelca)statystyki).zwinność + dodatkowePunkty)/100);
+                otrzymaneObrażenia -= Math.Max(otrzymaneObrażenia, 0);
+                zdrowie -= otrzymaneObrażenia;
+                Console.WriteLine($"Otrzymałeś { otrzymaneObrażenia } obrażeń. Pozostałe zdrowie: { zdrowie }");
+            }
+        }
     }
 }

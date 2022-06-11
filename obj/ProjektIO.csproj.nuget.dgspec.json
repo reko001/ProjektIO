@@ -1,27 +1,25 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\dawid\\source\\repos\\ProjektIO\\ProjektIO.csproj": {}
+    "C:\\Users\\gabri\\RiderProjects\\ProjektIO_good\\ProjektIO.csproj": {}
   },
   "projects": {
-    "C:\\Users\\dawid\\source\\repos\\ProjektIO\\ProjektIO.csproj": {
+    "C:\\Users\\gabri\\RiderProjects\\ProjektIO_good\\ProjektIO.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\dawid\\source\\repos\\ProjektIO\\ProjektIO.csproj",
+        "projectUniqueName": "C:\\Users\\gabri\\RiderProjects\\ProjektIO_good\\ProjektIO.csproj",
         "projectName": "ProjektIO",
-        "projectPath": "C:\\Users\\dawid\\source\\repos\\ProjektIO\\ProjektIO.csproj",
-        "packagesPath": "C:\\Users\\dawid\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\dawid\\source\\repos\\ProjektIO\\obj\\",
+        "projectPath": "C:\\Users\\gabri\\RiderProjects\\ProjektIO_good\\ProjektIO.csproj",
+        "packagesPath": "C:\\Users\\gabri\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\gabri\\RiderProjects\\ProjektIO_good\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\dawid\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\gabri\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net6.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -54,7 +52,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.201\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.202\\RuntimeIdentifierGraph.json"
         }
       }
     }

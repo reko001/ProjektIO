@@ -53,5 +53,38 @@
             System.Console.WriteLine($"Szansa na cios krytyczny: { ((StatystykiWojownika)statystyki).szansaNaCiosKrytyczny }");
             
         }
+        
+        public override void Walka(Przeciwnik przeciwnik)
+        {
+            while (zdrowie > 0 && przeciwnik.statystyki.punktyZdrowia > 0)
+            {
+                Random random = new Random();
+                int dodatkowePunkty = random.Next(0, statystyki.szczęście);
+                int dodatkowePunktyPrzeciwnik = random.Next(0, przeciwnik.statystyki.szczęście);
+                int wylosowanaLiczba = random.Next(1, 100);
+
+                int zadaneObrażenia = (int)(statystyki.atakFizyczny * 2) *
+                                      (1 + (dodatkowePunkty / 100));
+                if (((StatystykiWojownika) statystyki).szansaNaCiosKrytyczny >= wylosowanaLiczba)
+                {
+                    zadaneObrażenia *= 2;
+                }
+                zadaneObrażenia -= przeciwnik.statystyki.obrona * (1+ dodatkowePunktyPrzeciwnik/100);
+                zadaneObrażenia = Math.Max(zadaneObrażenia, 0);
+
+
+                przeciwnik.statystyki.punktyZdrowia -= zadaneObrażenia;
+                Console.WriteLine($"Zadałeś { zadaneObrażenia } obrażeń. Pozostałe zdrowie przeciwnika: { przeciwnik.statystyki.punktyZdrowia }");
+                if (przeciwnik.statystyki.punktyZdrowia <= 0) break;
+
+                int otrzymaneObrażenia = (int)(przeciwnik.statystyki.atakFizyczny * 2.5) *
+                                         (1 + (dodatkowePunkty / 100));
+                otrzymaneObrażenia -= statystyki.obrona * (1 + (((StatystykiWojownika)statystyki).wytrzymałość + dodatkowePunkty)/100);
+                otrzymaneObrażenia -= Math.Max(otrzymaneObrażenia, 0);
+                zdrowie -= otrzymaneObrażenia;
+                Console.WriteLine($"Otrzymałeś { otrzymaneObrażenia } obrażeń. Pozostałe zdrowie: { zdrowie }");
+            }
+        }
+        
     }
 }

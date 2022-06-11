@@ -1,5 +1,4 @@
 using GraLibrary;
-using GraLibrary.Zdarzenia;
 
 namespace GraUI
 {
@@ -67,45 +66,6 @@ namespace GraUI
                 ustawienie obecnego miejsca na rynek główny
             */
             obecneMiejsce = rynekGłówny;
-
-
-            /*
-                Dodanie zdarzeń do miejsc
-            */
-            
-            //Rynek Główny
-
-            //Rozległe Pola
-            rozległePola.DodajZdarzenie(new ZdarzeniePola());
-
-            //Ciemny Las
-            ciemnyLas.DodajZdarzenie(new ZdarzenieWilk());
-            ciemnyLas.DodajZdarzenie(new ZdarzenieNiedźwiedź());
-            //////////////Druid
-
-            //Magazyny Żywności
-            magazynyŻywności.DodajZdarzenie(new ZdarzenieStrażnik());
-            magazynyŻywności.DodajZdarzenie(new ZdarzenieKradzieżTowarów());
-
-            //Stary Cmentarz
-
-            //Park
-
-            //Poczta
-
-            //Opuszczone Ruiny
-
-            //Wybrzeże Morza
-
-            //Port Morski
-
-            //Tawerna
-
-            //Spokojna Dzielnica
-
-            //Tajemniczy Zamek
-
-            //Lochy
         }
     
         private void WybierzProfesję()
@@ -170,11 +130,14 @@ namespace GraUI
 
             postać.WbiciePoziomu(); //aktualizacja poziomu postaci
 
+            System.Console.Clear();
             System.Console.WriteLine($"{profesja}: { postać.poziom } Level { postać.doświadczenie }/100 EXP  Złoto: { postać.złoto }");
             System.Console.WriteLine();
             System.Console.WriteLine($"Znajdujesz się obecnie w { obecneMiejsce.Nazwa }");
 
             WybórKolejnejAkcji();
+
+            WybórNowegoMiejsca();
 
         }
 
@@ -233,7 +196,6 @@ namespace GraUI
 
                 if(akcja == "M") //zmiana miejsca
                 {
-                    WybórNowegoMiejsca();
                     return;
                 }
                 else if(akcja == "E") //pokazanie ekwipunku
