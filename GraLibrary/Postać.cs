@@ -15,10 +15,7 @@
         public int pojemnośćPlecaka;
         public List<Mikstura>? mikstury;
 
-        public void Walka(Przeciwnik przeciwnik)
-        {
-            
-        }
+        public abstract void Walka(Przeciwnik przeciwnik);
 
         public abstract void WbiciePoziomu();
 
