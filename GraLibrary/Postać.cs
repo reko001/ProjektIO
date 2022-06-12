@@ -39,10 +39,15 @@
             System.Console.WriteLine();
         }
 
-        public void WypijMiksturę(Mikstura mikstura)
+        public void WypijMiksturę(int index)
         {
-            zdrowie += mikstura.zwracaneZdrowie;
+            zdrowie += mikstury[index].zwracaneZdrowie;
             zdrowie = Math.Min(zdrowie, statystyki.punktyZdrowia);
+        }
+
+        public void DodajMiksturę(Mikstura mikstura)
+        {
+            mikstury.Add(mikstura);
         }
     }
 }

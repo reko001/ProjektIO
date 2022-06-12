@@ -12,14 +12,39 @@ namespace GraUI
 
         public Gra()
         {
+            Console.OutputEncoding = System.Text.Encoding.UTF8; //wybór kodowania UTF8
             ZaładujMapę();
+            ZaładujDruida();
         }
 
         public void RozpocznijGrę()
         {
-            Console.OutputEncoding = System.Text.Encoding.UTF8; //wybór kodowania UTF8
             WybierzProfesję();
             GraLoop(); // Właściwa pętla z grą
+        }
+
+        private void GraLoop()
+        {
+            System.Console.Clear();
+
+            obecneMiejsce.WykonajZdarzenie(postać); //wykonanie zdarzenia na obecnej mapie
+
+            if(postać.zdrowie <= 0) //zakończenie gry jeśli postać zginęła
+            {
+                System.Console.WriteLine("Jesteś MARTWY.");
+                System.Console.WriteLine("To koniec twojej przygody.");
+                System.Console.WriteLine("Spoczywaj w zaświatach.");
+                System.Console.WriteLine($"Zakończyłeś grę z { postać.poziom } poziomem postaci.");
+                return;
+            }
+
+            postać.WbiciePoziomu(); //aktualizacja poziomu postaci
+
+            System.Console.WriteLine($"{profesja}: { postać.poziom } Level { postać.doświadczenie }/100 EXP  Złoto: { postać.złoto }");
+            System.Console.WriteLine();
+            System.Console.WriteLine($"Znajdujesz się obecnie w { obecneMiejsce.Nazwa }");
+
+            WybórKolejnejAkcji();
         }
 
         private void ZaładujMapę()
@@ -80,7 +105,7 @@ namespace GraUI
             rozległePola.DodajZdarzenie(new ZdarzeniePola());
 
             //Ciemny Las
-            //ciemnyLas.DodajZdarzenie(new ZdarzenieDruid());
+            ciemnyLas.DodajZdarzenie(new ZdarzenieDruid());
             ciemnyLas.DodajZdarzenie(new ZdarzenieWilk());
             ciemnyLas.DodajZdarzenie(new ZdarzenieNiedźwiedź());
 
@@ -184,31 +209,7 @@ namespace GraUI
 
         }
    
-        private void GraLoop()
-        {
-            System.Console.Clear();
-
-            obecneMiejsce.WykonajZdarzenie(postać); //wykonanie zdarzenia na obecnej mapie
-
-            if(postać.zdrowie <= 0) //zakończenie gry jeśli postać zginęła
-            {
-                System.Console.WriteLine("Jesteś MARTWY.");
-                System.Console.WriteLine("To koniec twojej przygody.");
-                System.Console.WriteLine("Spoczywaj w zaświatach.");
-                System.Console.WriteLine($"Zakończyłeś grę z { postać.poziom } poziomem postaci.");
-                return;
-            }
-
-            postać.WbiciePoziomu(); //aktualizacja poziomu postaci
-
-            System.Console.WriteLine($"{profesja}: { postać.poziom } Level { postać.doświadczenie }/100 EXP  Złoto: { postać.złoto }");
-            System.Console.WriteLine();
-            System.Console.WriteLine($"Znajdujesz się obecnie w { obecneMiejsce.Nazwa }");
-
-            WybórKolejnejAkcji();
-
-        }
-
+        
         private void WybórNowegoMiejsca()
         {
             foreach(Miejsce miejsce in mapa[obecneMiejsce])
@@ -315,7 +316,7 @@ namespace GraUI
                         int wybór = Convert.ToInt32(System.Console.ReadLine().Trim());
                         if(wybór >= 1 && wybór <= postać.mikstury.Count)
                         {
-                            postać.WypijMiksturę(postać.mikstury[wybór - 1]);
+                            postać.WypijMiksturę(wybór - 1);
                             postać.mikstury.RemoveAt(wybór - 1);
                         }
                     }
@@ -330,8 +331,14 @@ namespace GraUI
                     System.Console.WriteLine("Wybierz poprawną akcję");
                 }
             }
-        }
+            }
 
+        private void ZaładujDruida()
+        {
+            Druid.DodajMiksturę(100, 50, "Mała Mikstura");
+            Druid.DodajMiksturę(250, 100, "Średnia Mikstura");
+            Druid.DodajMiksturę(600, 200, "Duża Mikstura");
+        }
 
     }
 }

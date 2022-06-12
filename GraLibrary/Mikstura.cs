@@ -5,10 +5,10 @@ namespace GraLibrary
         public string nazwa;
         public int zwracaneZdrowie;
 
-        public Mikstura(string n, int z)
+        public Mikstura(string nazwa, int zwracaneZdrowie)
         {
-            nazwa = n;
-            zwracaneZdrowie = z;
+            this.nazwa = nazwa;
+            this.zwracaneZdrowie = zwracaneZdrowie;
         }
     }
 }
