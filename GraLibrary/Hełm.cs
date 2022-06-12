@@ -2,6 +2,6 @@
 {
     public class Hełm : Przedmiot
     {
-        public Hełm(string n, Statystyki s, int wp, int k, Profesja p) : base(n, s, wp, k, p){}
-    }
+        public Hełm(string nazwa, Statystyki statystyki, int wymaganyPoziom, int koszt, Profesja profesja) :
+        base(nazwa, statystyki, wymaganyPoziom, koszt, profesja){}    }
 }

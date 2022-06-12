@@ -4,6 +4,7 @@
     {
         private Wojownik()
         {
+            statystykiBazowe = new StatystykiWojownika(500, 100, 200, 0, 10, 0);
             statystyki = new StatystykiWojownika(500, 100, 200, 0, 10, 0);
             zdrowie = 500;
             złoto = 1000;
@@ -33,13 +34,14 @@
             {
                 poziom++;
                 doświadczenie -= 100;
-                statystyki.punktyZdrowia += 100;
-                zdrowie = statystyki.punktyZdrowia;
-                statystyki.atakFizyczny += 20;
-                statystyki.obrona += 50;
-                ((StatystykiWojownika)statystyki).wytrzymałość += 5;
+                statystykiBazowe.punktyZdrowia += 100;
+                statystykiBazowe.atakFizyczny += 20;
+                statystykiBazowe.obrona += 50;
+                ((StatystykiWojownika)statystykiBazowe).wytrzymałość += 5;
                 System.Console.WriteLine("Udało ci się zdobyć kolejny poziom!");
             }
+            PrzeliczStatystyki();
+            zdrowie = statystyki.punktyZdrowia;
         }
 
         public override void PokażStatystyki()
@@ -51,7 +53,7 @@
             System.Console.WriteLine($"Szczęście: { statystyki.szczęście }");
             System.Console.WriteLine($"Wytrzymałość: { ((StatystykiWojownika)statystyki).wytrzymałość }");
             System.Console.WriteLine($"Szansa na cios krytyczny: { ((StatystykiWojownika)statystyki).szansaNaCiosKrytyczny }");
-            
+            System.Console.WriteLine($"Złoto: { złoto }");
         }
         
         public override void Walka(Przeciwnik przeciwnik)
@@ -86,6 +88,147 @@
                 zdrowie -= otrzymaneObrażenia;
                 Console.WriteLine($"Otrzymałeś { otrzymaneObrażenia } obrażeń. Pozostałe zdrowie: { zdrowie }");
             }
+        }
+
+        public override void PrzeliczStatystyki()
+        {
+            int najwyższyPoziom;
+            //broń
+            Broń najlepszaBroń = null;
+            najwyższyPoziom = 0;
+            foreach(Przedmiot przedmiot in plecak)
+            {
+                if(przedmiot.GetType() == typeof(Broń))
+                {   
+                    if(przedmiot.wymaganyPoziom <= poziom && przedmiot.wymaganyPoziom > najwyższyPoziom)
+                    {
+                        najlepszaBroń = (Broń)przedmiot;
+                        najwyższyPoziom = przedmiot.wymaganyPoziom;
+                    }
+                }
+            }
+
+            //Buty
+            Buty najlepszeButy = null;
+            najwyższyPoziom = 0;
+            foreach(Przedmiot przedmiot in plecak)
+            {
+                if(przedmiot.GetType() == typeof(Buty))
+                {   
+                    if(przedmiot.wymaganyPoziom <= poziom && przedmiot.wymaganyPoziom > najwyższyPoziom)
+                    {
+                        najlepszeButy = (Buty)przedmiot;
+                        najwyższyPoziom = przedmiot.wymaganyPoziom;
+                    }
+                }
+            }
+
+            //Spodnie
+            Spodnie najlepszeSpodnie = null;
+            najwyższyPoziom = 0;
+            foreach(Przedmiot przedmiot in plecak)
+            {
+                if(przedmiot.GetType() == typeof(Spodnie))
+                {   
+                    if(przedmiot.wymaganyPoziom <= poziom && przedmiot.wymaganyPoziom > najwyższyPoziom)
+                    {
+                        najlepszeSpodnie = (Spodnie)przedmiot;
+                        najwyższyPoziom = przedmiot.wymaganyPoziom;
+                    }
+                }
+            }
+
+            //Zbroja
+            Zbroja najlepszaZbroja = null;
+            najwyższyPoziom = 0;
+            foreach(Przedmiot przedmiot in plecak)
+            {
+                if(przedmiot.GetType() == typeof(Zbroja))
+                {   
+                    if(przedmiot.wymaganyPoziom <= poziom && przedmiot.wymaganyPoziom > najwyższyPoziom)
+                    {
+                        najlepszaZbroja = (Zbroja)przedmiot;
+                        najwyższyPoziom = przedmiot.wymaganyPoziom;
+                    }
+                }
+            }
+
+            //Hełm
+            Hełm najlepszyHełm = null;
+            najwyższyPoziom = 0;
+            foreach(Przedmiot przedmiot in plecak)
+            {
+                if(przedmiot.GetType() == typeof(Hełm))
+                {   
+                    if(przedmiot.wymaganyPoziom <= poziom && przedmiot.wymaganyPoziom > najwyższyPoziom)
+                    {
+                        najlepszyHełm = (Hełm)przedmiot;
+                        najwyższyPoziom = przedmiot.wymaganyPoziom;
+                    }
+                }
+            }
+
+
+            //aktualizacja statystyk - wlicza się tylko najlepszy przedmiot
+            statystyki.punktyZdrowia = statystykiBazowe.punktyZdrowia;
+            statystyki.atakFizyczny = statystykiBazowe.atakFizyczny;
+            statystyki.obrona = statystykiBazowe.obrona;
+            statystyki.szczęście = statystykiBazowe.szczęście;
+            ((StatystykiWojownika)statystyki).wytrzymałość = ((StatystykiWojownika)statystykiBazowe).wytrzymałość;
+            ((StatystykiWojownika)statystyki).szansaNaCiosKrytyczny = ((StatystykiWojownika)statystykiBazowe).szansaNaCiosKrytyczny;
+
+            if(najlepszaBroń != null)
+            {
+                statystyki.punktyZdrowia += najlepszaBroń.statystyki.punktyZdrowia;
+                statystyki.atakFizyczny += najlepszaBroń.statystyki.atakFizyczny;
+                statystyki.obrona += najlepszaBroń.statystyki.obrona;
+                statystyki.szczęście += najlepszaBroń.statystyki.szczęście;
+                ((StatystykiWojownika)statystyki).wytrzymałość += ((StatystykiWojownika)najlepszaBroń.statystyki).wytrzymałość;
+                ((StatystykiWojownika)statystyki).szansaNaCiosKrytyczny += ((StatystykiWojownika)najlepszaBroń.statystyki).szansaNaCiosKrytyczny;
+            }
+
+            if(najlepszeButy != null)
+            {
+                statystyki.punktyZdrowia += najlepszeButy.statystyki.punktyZdrowia;
+                statystyki.atakFizyczny += najlepszeButy.statystyki.atakFizyczny;
+                statystyki.obrona += najlepszeButy.statystyki.obrona;
+                statystyki.szczęście += najlepszeButy.statystyki.szczęście;
+                ((StatystykiWojownika)statystyki).wytrzymałość += ((StatystykiWojownika)najlepszeButy.statystyki).wytrzymałość;
+                ((StatystykiWojownika)statystyki).szansaNaCiosKrytyczny += ((StatystykiWojownika)najlepszeButy.statystyki).szansaNaCiosKrytyczny;
+            }
+
+            if(najlepszeSpodnie != null)
+            {
+                statystyki.punktyZdrowia += najlepszeSpodnie.statystyki.punktyZdrowia;
+                statystyki.atakFizyczny += najlepszeSpodnie.statystyki.atakFizyczny;
+                statystyki.obrona += najlepszeSpodnie.statystyki.obrona;
+                statystyki.szczęście = najlepszeSpodnie.statystyki.szczęście;
+                ((StatystykiWojownika)statystyki).wytrzymałość += ((StatystykiWojownika)najlepszeSpodnie.statystyki).wytrzymałość;
+                ((StatystykiWojownika)statystyki).szansaNaCiosKrytyczny += ((StatystykiWojownika)najlepszeSpodnie.statystyki).szansaNaCiosKrytyczny;
+            }
+
+            if(najlepszaZbroja != null)
+            {  
+                statystyki.punktyZdrowia += najlepszaZbroja.statystyki.punktyZdrowia;
+                statystyki.atakFizyczny += najlepszaZbroja.statystyki.atakFizyczny;
+                statystyki.obrona += najlepszaZbroja.statystyki.obrona;
+                statystyki.szczęście += najlepszaZbroja.statystyki.szczęście;
+                ((StatystykiWojownika)statystyki).wytrzymałość += ((StatystykiWojownika)najlepszaZbroja.statystyki).wytrzymałość;
+                ((StatystykiWojownika)statystyki).szansaNaCiosKrytyczny += ((StatystykiWojownika)najlepszaZbroja.statystyki).szansaNaCiosKrytyczny;
+            }
+
+            if(najlepszyHełm != null)
+            {
+                statystyki.punktyZdrowia += najlepszyHełm.statystyki.punktyZdrowia;
+                statystyki.atakFizyczny += najlepszyHełm.statystyki.atakFizyczny;
+                statystyki.obrona += najlepszyHełm.statystyki.obrona;
+                statystyki.szczęście += najlepszyHełm.statystyki.szczęście;
+                ((StatystykiWojownika)statystyki).wytrzymałość += ((StatystykiWojownika)najlepszyHełm.statystyki).wytrzymałość;
+                ((StatystykiWojownika)statystyki).szansaNaCiosKrytyczny += ((StatystykiWojownika)najlepszyHełm.statystyki).szansaNaCiosKrytyczny;
+            }
+
+            zdrowie = Math.Min(zdrowie, statystyki.punktyZdrowia);
+
         }
         
     }

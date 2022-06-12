@@ -9,13 +9,13 @@ namespace GraLibrary
         public int koszt;
         public Profesja profesja;
 
-        public Przedmiot(string n, Statystyki s, int wp, int k, Profesja p)
+        public Przedmiot(string nazwa, Statystyki statystyki, int wymaganyPoziom, int koszt, Profesja profesja)
         {
-            nazwa = n;
-            statystyki = s;
-            wymaganyPoziom = wp;
-            koszt = k;
-            profesja = p;
+            this.nazwa = nazwa;
+            this.statystyki = statystyki;
+            this.wymaganyPoziom = wymaganyPoziom;
+            this.koszt = koszt;
+            this.profesja = profesja;
         }
 
         public void PokażStatystyki()

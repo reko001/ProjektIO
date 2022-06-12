@@ -5,6 +5,7 @@
         protected static Postać? instancja;
 
         public Statystyki statystyki;
+        public Statystyki statystykiBazowe;
         
         public int zdrowie;
         public int złoto;
@@ -25,7 +26,7 @@
         {
             foreach(Przedmiot przedmiot in plecak)
             {
-                System.Console.Write($"[ { przedmiot.nazwa } ] ");
+                System.Console.Write($"[ { przedmiot.nazwa } ({ przedmiot.koszt } złota)] ");
             }
             System.Console.WriteLine();
         }
@@ -49,5 +50,12 @@
         {
             mikstury.Add(mikstura);
         }
+
+        public void DodajPrzedmiot(Przedmiot przedmiot)
+        {
+            plecak.Add(przedmiot);
+        }
+
+        public abstract void PrzeliczStatystyki();
     }
 }

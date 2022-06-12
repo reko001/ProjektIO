@@ -2,6 +2,6 @@ namespace GraLibrary
 {
     public class Zbroja : Przedmiot
     {
-        public Zbroja(string n, Statystyki s, int wp, int k, Profesja p) : base(n, s, wp, k, p){}
-    }
+        public Zbroja(string nazwa, Statystyki statystyki, int wymaganyPoziom, int koszt, Profesja profesja) :
+        base(nazwa, statystyki, wymaganyPoziom, koszt, profesja){}    }
 }
