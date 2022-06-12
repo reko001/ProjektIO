@@ -69,8 +69,9 @@
                 {
                     zadaneObrażenia *= 2;
                 }
-                zadaneObrażenia -= przeciwnik.statystyki.obrona * (1+ dodatkowePunktyPrzeciwnik/100);
-                zadaneObrażenia = Math.Max(zadaneObrażenia, 0);
+                int rzeczywisteZadaneObrażenia = zadaneObrażenia - przeciwnik.statystyki.obrona * 
+                                         (1+ dodatkowePunktyPrzeciwnik/100);
+                zadaneObrażenia = Math.Max(zadaneObrażenia / 2, rzeczywisteZadaneObrażenia);
 
 
                 przeciwnik.statystyki.punktyZdrowia -= zadaneObrażenia;
@@ -79,8 +80,9 @@
 
                 int otrzymaneObrażenia = (int)(przeciwnik.statystyki.atakFizyczny * 2.5) *
                                          (1 + (dodatkowePunkty / 100));
-                otrzymaneObrażenia -= statystyki.obrona * (1 + (((StatystykiWojownika)statystyki).wytrzymałość + dodatkowePunkty)/100);
-                otrzymaneObrażenia -= Math.Max(otrzymaneObrażenia, 0);
+                int rzeczywisteOtrzymaneObrażenia = otrzymaneObrażenia - statystyki.obrona * 
+                                         (1 + (((StatystykiWojownika)statystyki).wytrzymałość + dodatkowePunkty)/100);
+                otrzymaneObrażenia = Math.Max(otrzymaneObrażenia / 2, rzeczywisteOtrzymaneObrażenia);
                 zdrowie -= otrzymaneObrażenia;
                 Console.WriteLine($"Otrzymałeś { otrzymaneObrażenia } obrażeń. Pozostałe zdrowie: { zdrowie }");
             }

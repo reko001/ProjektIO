@@ -64,8 +64,9 @@ namespace GraLibrary
                 
                 int zadaneObrażenia = (int)(statystyki.atakFizyczny + ((StatystykiMaga) statystyki).atakMagiczny * 3) *
                                         (1 + ( ((StatystykiMaga) statystyki).mądrość + dodatkowePunkty )/ 100);
-                zadaneObrażenia -= przeciwnik.statystyki.obrona * (1+ dodatkowePunktyPrzeciwnik/100);
-                zadaneObrażenia = Math.Max(zadaneObrażenia, 0);
+                int rzeczywisteZadaneObrażenia = zadaneObrażenia - przeciwnik.statystyki.obrona * 
+                                        (1+ dodatkowePunktyPrzeciwnik/100);
+                zadaneObrażenia = Math.Max(zadaneObrażenia / 2, rzeczywisteZadaneObrażenia);
 
                 przeciwnik.statystyki.punktyZdrowia -= zadaneObrażenia;
                 Console.WriteLine($"Zadałeś { zadaneObrażenia } obrażeń. Pozostałe zdrowie przeciwnika: { przeciwnik.statystyki.punktyZdrowia }");
@@ -73,8 +74,8 @@ namespace GraLibrary
 
                 int otrzymaneObrażenia = (int)(przeciwnik.statystyki.atakFizyczny * 2.5) *
                                          (1 + (dodatkowePunktyPrzeciwnik / 100));
-                otrzymaneObrażenia -= statystyki.obrona * (1+ dodatkowePunkty/100);
-                otrzymaneObrażenia -= Math.Max(otrzymaneObrażenia, 0);
+                int rzeczywisteOtrzymaneObrażenia = otrzymaneObrażenia - statystyki.obrona * (1+ dodatkowePunkty/100);
+                otrzymaneObrażenia = Math.Max(otrzymaneObrażenia / 2, rzeczywisteOtrzymaneObrażenia);
                 zdrowie -= otrzymaneObrażenia;
                 Console.WriteLine($"Otrzymałeś { otrzymaneObrażenia } obrażeń. Pozostałe zdrowie: { zdrowie }");
             }
