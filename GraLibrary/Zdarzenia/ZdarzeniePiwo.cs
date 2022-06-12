@@ -12,7 +12,7 @@
                 Console.WriteLine("Kupujesz kufel piwa za 5 sztuk złota");
 
                 Random random = new Random();
-                int szansaNaUpicieSie = 15;
+                int szansaNaUpicieSie = random.Next(15, 50);
                 int wylosowanaLiczba = random.Next(1, 101);
 
                 if(wylosowanaLiczba <= szansaNaUpicieSie - postać.statystyki.szczęście) //upicie sie
