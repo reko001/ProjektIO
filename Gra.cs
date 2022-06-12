@@ -144,8 +144,9 @@ namespace GraUI
             wybrzeżeMorza.DodajZdarzenie(new ZdarzeniePodejrzanyCzłowiek());
 
             //Port Morski
-            //////rybak
-            //////rozładunek
+            portMorski.DodajZdarzenie(new ZdarzenieRybak());
+            portMorski.DodajZdarzenie(new ZdarzenieRozładunek());
+            portMorski.DodajZdarzenie(new ZdarzeniePodchmieleniBywalcy());
 
             //Tawerna
             tawerna.DodajZdarzenie(new ZdarzeniePiwo());
