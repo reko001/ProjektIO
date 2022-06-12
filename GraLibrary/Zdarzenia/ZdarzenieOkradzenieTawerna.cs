@@ -31,7 +31,7 @@
             }
             else
             {
-                Console.WriteLine("Tym razem jednak nic szczególnego się nie wtdarza.");
+                Console.WriteLine("Tym razem jednak nic szczególnego się nie wydarza.");
             }
         }
     }
