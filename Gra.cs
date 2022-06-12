@@ -1,4 +1,5 @@
 using GraLibrary;
+using GraLibrary.Zdarzenia;
 
 namespace GraUI
 {
@@ -66,6 +67,72 @@ namespace GraUI
                 ustawienie obecnego miejsca na rynek główny
             */
             obecneMiejsce = rynekGłówny;
+
+            /*
+                dodanie zdarzeń do miejsc
+            */
+
+            //Rynek Główny
+            rynekGłówny.DodajZdarzenie(new ZdarzenieStudnia());
+            rynekGłówny.DodajZdarzenie(new ZdarzenieTrzyKarty());
+
+            //Rozległe Pola
+            rozległePola.DodajZdarzenie(new ZdarzeniePola());
+
+            //Ciemny Las
+            //ciemnyLas.DodajZdarzenie(new ZdarzenieDruid());
+            ciemnyLas.DodajZdarzenie(new ZdarzenieWilk());
+            ciemnyLas.DodajZdarzenie(new ZdarzenieNiedźwiedź());
+
+            //Magazyny Żywności
+            magazynyŻywności.DodajZdarzenie(new ZdarzenieKradzieżTowarów());
+            magazynyŻywności.DodajZdarzenie(new ZdarzenieStrażnik());
+
+            //Stary Cmentarz
+            staryCmentarz.DodajZdarzenie(new ZdarzenieGrobowiec());
+            staryCmentarz.DodajZdarzenie(new ZdarzenieKsiądz());
+            staryCmentarz.DodajZdarzenie(new ZdarzeniePodejrzanyCzłowiek());
+
+            //Park
+            park.DodajZdarzenie(new ZdarzenieŁawka());
+            park.DodajZdarzenie(new ZdarzenieSpacer());
+            park.DodajZdarzenie(new ZdarzenieOkradzeniePark());
+
+            //Poczta
+            poczta.DodajZdarzenie(new ZdarzenieKoperta());  
+
+            //Opuszczone Ruiny
+            opuszczoneRuiny.DodajZdarzenie(new ZdarzenieSkrytka());
+            opuszczoneRuiny.DodajZdarzenie(new ZdarzenieStarzec());
+            opuszczoneRuiny.DodajZdarzenie(new ZdarzeniePodejrzanyCzłowiek());
+
+            //Wybrzeże Morza
+            wybrzeżeMorza.DodajZdarzenie(new ZdarzenieTajemniczyCzłowiek());
+            wybrzeżeMorza.DodajZdarzenie(new ZdarzenieOdpoczynek());
+            wybrzeżeMorza.DodajZdarzenie(new ZdarzeniePodejrzanyCzłowiek());
+
+            //Port Morski
+            //////rybak
+            //////rozładunek
+
+            //Tawerna
+            tawerna.DodajZdarzenie(new ZdarzeniePiwo());
+            tawerna.DodajZdarzenie(new ZdarzenieBójka());
+            tawerna.DodajZdarzenie(new ZdarzenieOkradzenieTawerna());
+
+            //Spokojna Dzielnica
+            spokojnaDzielnica.DodajZdarzenie(new ZdarzenieTragarz());
+            spokojnaDzielnica.DodajZdarzenie(new ZdarzenieWędrowiec());
+
+            //Tajemniczy Zamek
+            tajemniczyZamek.DodajZdarzenie(new ZdarzenieZjawa());
+            tajemniczyZamek.DodajZdarzenie(new ZdarzenieSkrzynia());
+            tajemniczyZamek.DodajZdarzenie(new ZdarzenieKomnata());
+
+            //Lochy
+            lochy.DodajZdarzenie(new ZdarzenieLegendarnyPotwór());
+
+
         }
     
         private void WybierzProfesję()
@@ -125,19 +192,20 @@ namespace GraUI
 
             if(postać.zdrowie <= 0) //zakończenie gry jeśli postać zginęła
             {
+                System.Console.WriteLine("Jesteś MARTWY.");
+                System.Console.WriteLine("To koniec twojej przygody.");
+                System.Console.WriteLine("Spoczywaj w zaświatach.");
+                System.Console.WriteLine($"Zakończyłeś grę z { postać.poziom } poziomem postaci.");
                 return;
             }
 
             postać.WbiciePoziomu(); //aktualizacja poziomu postaci
 
-            System.Console.Clear();
             System.Console.WriteLine($"{profesja}: { postać.poziom } Level { postać.doświadczenie }/100 EXP  Złoto: { postać.złoto }");
             System.Console.WriteLine();
             System.Console.WriteLine($"Znajdujesz się obecnie w { obecneMiejsce.Nazwa }");
 
             WybórKolejnejAkcji();
-
-            WybórNowegoMiejsca();
 
         }
 
@@ -196,6 +264,7 @@ namespace GraUI
 
                 if(akcja == "M") //zmiana miejsca
                 {
+                    WybórNowegoMiejsca();
                     return;
                 }
                 else if(akcja == "E") //pokazanie ekwipunku
